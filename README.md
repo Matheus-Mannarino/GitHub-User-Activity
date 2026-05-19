@@ -20,4 +20,4 @@ Projeto desenvolvido em Python que consome a API pública do GitHub para exibir 
 
 ```bash
 pip install -r requirements.txt
-python main.py <insira o username do github>
+python main.py username
