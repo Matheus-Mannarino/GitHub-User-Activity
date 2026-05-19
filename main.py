@@ -1,12 +1,19 @@
 from github_api import obter_dados #importando a função do outro arquivo
 from utils import tipos_eventos #importando o dicionario de tipos de evento
 from datetime import datetime #importando o modulo de data e tempo
+import sys
 
-username = input("Insira um username: ") #input pedindo um username
+if len(sys.argv) < 2: # verificando se o usuário passou o nome de usuário como argumento
+    print("Uso: python main.py <username>")
+    sys.exit()
+
+username = sys.argv[1] # pegando o nome de usuário do argumento passado na linha de comando
 
 dados = obter_dados(username) #chamando a função com o username inserido
 
-if dados == []: #se os dados forem vazios 
+if "erro" in dados:
+    print(dados["erro"])
+elif not dados:
     print("Nenhuma atividade pública recente encontrada.")
 else: #se houver dados
     for evento in dados[:10]:
