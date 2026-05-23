@@ -31,32 +31,34 @@ function App() {
   const [activities, setActivities] = useState([]) /* estado para armazenar as atividades retornadas pela API */
   const [loading, setLoading] = useState(false) /* estado para indicar se a busca está em andamento */
   return (
-    <div>
+    <div className="container">
       <h1>GitHub User Activity</h1> {/* título da pagina */}
 
-      <input 
-        type="text"
-        placeholder="Digite um username"
-        value={username} /* o valor do input é controlado pelo estado username */
-        onChange={(event) => setUsername(event.target.value)} /* atualiza o estado com o valor digitado pelo usuário */
-      /> {/* campo onde usuário digitará */}
+      <div className="search-area">
+        <input 
+          type="text"
+          placeholder="Digite um username"
+          value={username} /* o valor do input é controlado pelo estado username */
+          onChange={(event) => setUsername(event.target.value)} /* atualiza o estado com o valor digitado pelo usuário */
+        /> {/* campo onde usuário digitará */}
 
-      <button onClick={buscarAtividades}>
-        Buscar
-      </button> {/* botão de busca */}
+        <button onClick={buscarAtividades}>
+          Buscar
+        </button> {/* botão de busca */}
+      </div>
 
       <hr />
 
-      {loading && <p>Carregando...</p>} {/* se a busca estiver em andamento, exibe a mensagem de carregamento */}
+      {loading && <p className="message">Carregando...</p>} {/* se a busca estiver em andamento, exibe a mensagem de carregamento */}
 
-      {error && <p>{error}</p>} {/* se houver uma mensagem de erro, exibe essa mensagem para o usuário */}
+      {error && <p className="message">{error}</p>} {/* se houver uma mensagem de erro, exibe essa mensagem para o usuário */}
       {!loading && !error && activities.length === 0 ? ( /* se não houver erro e a lista de atividades estiver vazia, exibe a mensagem de que nenhuma atividade foi encontrada */
-      <p>Nenhuma atividade encontrada.</p> 
+      <p className="message">Nenhuma atividade encontrada.</p> 
       ) : (
         !loading && ( /* se a busca não estiver em andamento, exibe a lista de atividades */
-          <ul>
+          <ul className="activity-list">
             {activities.map((activity, index) => ( /* caso houver atividades, mapeia as atividades e exibe cada uma em uma lista */
-              <li key={index}> {/* exibe a data, descrição e repositório de cada atividade */}
+              <li className="activity-item" key={index}> {/* exibe a data, descrição e repositório de cada atividade */}
                   {activity.data} | {activity.description} em {activity.repository}
               </li>
           ))}
