@@ -1,5 +1,5 @@
-from github_api import obter_dados #importando a função do outro arquivo
-from utils import tipos_eventos #importando o dicionario de tipos de evento
+from api.github_api import obter_dados #importando a função do outro arquivo
+from api.utils import tipos_eventos #importando o dicionario de tipos de evento
 from datetime import datetime #importando o modulo de data e tempo
 import sys
 
